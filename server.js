@@ -9,12 +9,15 @@ const app = express()
 app.use(express.json())
 app.use(cors())
 
-try {
-    mongoose.connect("mongodb+srv://arikerig:12344321@cluster0.9ee9sok.mongodb.net/goutama")
-    console.log("connected to mongo db")
-} catch (error) {
-    console.log("bad connection")
+const connection = async() => {
+    try {
+       const connect = await mongoose.connect("mongodb+srv://arikerig:12344321@cluster0.9ee9sok.mongodb.net/goutama")
+    } catch (error) {
+        console.log("bad connection")
+    }
+
 }
+connection()
 
 
 app.use("/api/user" , UserRoute)
